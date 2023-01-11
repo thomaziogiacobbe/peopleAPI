@@ -1,12 +1,16 @@
 package br.com.peopleapi.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 
 import java.util.*;
 
 @Entity
 @Table(name = "pessoa")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Pessoa_SEQ")
