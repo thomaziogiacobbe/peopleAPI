@@ -28,8 +28,14 @@ public class Pessoa {
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Endereco> enderecos = new ArrayList<>();
 
-    public List<Endereco> getEnderecos() {
-        return enderecos;
+    public void addEndereco(Endereco endereco) {
+        this.enderecos.add(endereco);
+        endereco.setPessoa(this);
+    }
+
+    public void removeEndereco(Endereco endereco) {
+        this.enderecos.remove(endereco);
+        endereco.setPessoa(null);
     }
 
     public void getEnderecos(List<Endereco> enderecos) {
