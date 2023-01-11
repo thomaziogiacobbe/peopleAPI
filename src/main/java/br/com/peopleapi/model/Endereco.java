@@ -1,12 +1,16 @@
 package br.com.peopleapi.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 
 import java.util.Objects;
 
 @Entity
 @Table(name = "endereco")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Endereco_SEQ")
@@ -19,7 +23,7 @@ public class Endereco {
     private Pessoa pessoa;
 
     @Column(name = "is_principal")
-    private Boolean isPrincipal;
+    private Boolean isPrincipal = false;
 
     @Column(name = "logradouro")
     private String logradouro;
@@ -27,7 +31,7 @@ public class Endereco {
     @Column(name = "numero")
     private Integer numero;
 
-    @Column(name = "cep", length = 8)
+    @Column(name = "cep", length = 8, nullable = false)
     private String cep;
 
     @Column(name = "cidade")
