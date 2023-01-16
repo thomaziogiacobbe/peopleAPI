@@ -39,7 +39,7 @@ public class PessoaTest {
     }
 
     @Test
-    void persistingAPessoaWithAGivenName_findAllByNameShouldContainThatPessoaIgnoringCase() {
+    void savePessoa_Then_findAllPessoasWithEqualNameIgnoringCase() {
 
         Calendar cal = Calendar.getInstance();
         cal.set(1998, Calendar.OCTOBER, 3);
