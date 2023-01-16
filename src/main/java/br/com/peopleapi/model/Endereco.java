@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 
+import javax.validation.constraints.Pattern;
 import java.util.Objects;
 
 @Entity
@@ -31,7 +32,8 @@ public class Endereco {
     @Column(name = "numero")
     private Integer numero;
 
-    @Column(name = "cep", length = 8, nullable = false)
+    @Pattern(regexp = "\\d{5}-\\d{3}", message = "O CEP é invalido")
+    @Column(name = "cep", length = 9, nullable = false)
     private String cep;
 
     @Column(name = "cidade")
