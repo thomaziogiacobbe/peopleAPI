@@ -2,7 +2,6 @@ package br.com.peopleapi.controller;
 
 import br.com.peopleapi.model.Pessoa;
 import br.com.peopleapi.service.PessoaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
