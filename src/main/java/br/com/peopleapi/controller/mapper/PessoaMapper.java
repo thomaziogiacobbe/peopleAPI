@@ -1,8 +1,6 @@
 package br.com.peopleapi.controller.mapper;
 
-import br.com.peopleapi.controller.dto.EnderecoDTO;
 import br.com.peopleapi.controller.dto.PessoaDTO;
-import br.com.peopleapi.model.Endereco;
 import br.com.peopleapi.model.Pessoa;
 
 import java.time.LocalDate;
