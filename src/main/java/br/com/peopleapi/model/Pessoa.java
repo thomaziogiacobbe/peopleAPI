@@ -1,8 +1,7 @@
 package br.com.peopleapi.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import java.time.Instant;
@@ -10,6 +9,9 @@ import java.time.LocalDate;
 import java.util.*;
 
 @Entity
+@Getter
+@Setter
+@Builder
 @Table(name = "pessoa")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,34 +40,6 @@ public class Pessoa {
     public void removeEndereco(Endereco endereco) {
         this.enderecos.remove(endereco);
         endereco.setPessoa(null);
-    }
-
-    public void getEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override

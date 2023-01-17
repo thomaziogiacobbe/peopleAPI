@@ -1,14 +1,17 @@
 package br.com.peopleapi.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.validation.constraints.Pattern;
 import java.util.Objects;
 
+
 @Entity
+@Getter
+@Setter
+@Builder
 @Table(name = "endereco")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,62 +41,6 @@ public class Endereco {
 
     @Column(name = "cidade")
     private String cidade;
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public Integer getNumero() {
-        return numero;
-    }
-
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
-
-    public String getLogradouro() {
-        return logradouro;
-    }
-
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
-    }
-
-    public Boolean getIsPrincipal() {
-        return isPrincipal;
-    }
-
-    public void setIsPrincipal(Boolean isPrincipal) {
-        this.isPrincipal = isPrincipal;
-    }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public boolean equals(Object o) {
