@@ -1,4 +1,4 @@
-package br.com.peopleapi.repository;
+package br.com.peopleapi.model.repository;
 
 import br.com.peopleapi.model.Pessoa;
 import org.springframework.data.jpa.repository.JpaRepository;
