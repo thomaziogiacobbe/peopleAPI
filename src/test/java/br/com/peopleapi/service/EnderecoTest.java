@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
-public class EnderecoTest {
+class EnderecoTest {
 
     @Autowired
     private EnderecoRepository enderecoRepository;
@@ -40,6 +40,8 @@ public class EnderecoTest {
 
         Pessoa pessoa = new Pessoa();
         pessoa.setNome("Thomazio Giacobbe");
+
+        enderecos.forEach(pessoa::addEndereco);
 
         pessoaRepository.save(pessoa);
 
