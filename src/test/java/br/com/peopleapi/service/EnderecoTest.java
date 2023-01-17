@@ -1,9 +1,11 @@
-package br.com.peopleapi;
+package br.com.peopleapi.service;
 
 import br.com.peopleapi.model.Endereco;
 import br.com.peopleapi.model.Pessoa;
 import br.com.peopleapi.model.repository.EnderecoRepository;
 import br.com.peopleapi.model.repository.PessoaRepository;
+import br.com.peopleapi.utils.EnderecoFactory;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,33 +24,34 @@ public class EnderecoTest {
     private PessoaRepository pessoaRepository;
 
     @Test
+    @Order(1)
     void shouldNotAllowNullLCep() {
-
-        Endereco endereco = new Endereco(1L, null, false, "Rua Um", 312, null, "Pelotas");
+        Endereco endereco = new Endereco(null, null, false, "Rua Um", 312, null, "Pelotas");
 
         assertThatThrownBy(() -> enderecoRepository.save(endereco))
                 .isInstanceOf(DataIntegrityViolationException.class);
     }
 
     @Test
+    @Order(2)
     void givenCidade_shouldReturnListOfPessoaFromCidade() {
 
-        Endereco endereco1 = new Endereco();
-        endereco1.setCidade("Pelotas");
-        endereco1.setCep("96010470");
-
-        Endereco endereco2 = new Endereco();
-        endereco2.setCidade("Pelotas");
-        endereco2.setCep("96010470");
+        var enderecos = EnderecoFactory.createEnderecos();
 
         Pessoa pessoa = new Pessoa();
         pessoa.setNome("Thomazio Giacobbe");
-        pessoa.addEndereco(endereco1);
-        pessoa.addEndereco(endereco2);
 
         pessoaRepository.save(pessoa);
 
         assertThat(enderecoRepository.findAllByPessoa_NomeContainsIgnoreCase("Thomazio Giacobbe"))
-                .contains(endereco1, endereco2);
+                .contains(enderecos.get(0), enderecos.get(1));
+    }
+
+    @Test
+    @Order(3)
+    void givenTwoEndereco_isUniqueEnderecoShouldReturnFalse() {
+        var enderecos = EnderecoFactory.createEnderecos();
+
+        assertThat(enderecos.get(0)).isNotEqualTo(enderecos.get(1));
     }
 }

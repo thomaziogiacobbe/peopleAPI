@@ -1,4 +1,4 @@
-package br.com.peopleapi;
+package br.com.peopleapi.service;
 
 import br.com.peopleapi.model.Pessoa;
 import br.com.peopleapi.model.repository.PessoaRepository;
@@ -9,9 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
 public class PessoaTest {
@@ -40,11 +40,7 @@ public class PessoaTest {
 
     @Test
     void savePessoa_Then_findAllPessoasWithEqualNameIgnoringCase() {
-
-        Calendar cal = Calendar.getInstance();
-        cal.set(1998, Calendar.OCTOBER, 3);
-
-        Pessoa p = new Pessoa(1L, "Thomazio Giacobbe", dateOfBirth, null);
+        var pessoa = new Pessoa(null, "Thomazio", dateOfBirth, null);
 
         pessoaRepository.save(p);
 
