@@ -1,5 +1,7 @@
 package br.com.peopleapi.controller;
 
+import br.com.peopleapi.controller.dto.EnderecoDTO;
+import br.com.peopleapi.controller.mapper.EnderecoMapper;
 import br.com.peopleapi.exception.EnderecoNotFoundException;
 import br.com.peopleapi.exception.PessoaNotFoundException;
 import br.com.peopleapi.model.Endereco;
@@ -22,11 +24,12 @@ public class EnderecoController {
         this.enderecoService = enderecoService;
     }
 
-    @PostMapping("/newEndereco/{pessoaId}")
-    public ResponseEntity<Endereco> createNewAdrress(@PathParam("pessoaId") Long id, @RequestBody Endereco endereco) {
+    @PostMapping("/newEndereco/")
+    public ResponseEntity<EnderecoDTO> createNewAdrress(@RequestBody EnderecoDTO endereco) {
         try {
-            var e = enderecoService.createEndereco(id, endereco);
-            return new ResponseEntity<>(e, HttpStatus.OK);
+            var enderecoDTO = EnderecoMapper.toDTO(
+                    enderecoService.createEndereco(EnderecoMapper.toEntity(endereco)));
+            return new ResponseEntity<>(enderecoDTO, HttpStatus.OK);
         } catch (DataIntegrityViolationException ex) {
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
         } catch (PessoaNotFoundException ex) {
@@ -46,8 +49,9 @@ public class EnderecoController {
         return new ResponseEntity<>(enderecos, enderecos.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK);
     }
 
-    @PatchMapping("/setPrincipal/{pessoaId}/{enderecoId}")
-    public ResponseEntity<Endereco> setEnderecoPrincipal(@PathParam("pessoaId") Long pessoaId, @PathParam("enderecoId") Long enderecoId) {
+    @PatchMapping("/setPrincipal/{pessoaId}/{enderecoId}/")
+    public ResponseEntity<Endereco> setEnderecoPrincipal(@PathVariable("pessoaId") Long pessoaId,
+                                                         @PathVariable("enderecoId") Long enderecoId) {
         try {
             return new ResponseEntity<>(enderecoService.setPrincipal(pessoaId, enderecoId), HttpStatus.OK);
         } catch (PessoaNotFoundException | EnderecoNotFoundException ex) {

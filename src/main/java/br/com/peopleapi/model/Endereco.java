@@ -12,7 +12,9 @@ import java.util.Objects;
 @Getter
 @Setter
 @Builder
-@Table(name = "endereco")
+@Table(name = "endereco", uniqueConstraints = {
+        @UniqueConstraint(name = "UniqueAddress", columnNames = { "cep", "numero", "logradouro" })
+})
 @AllArgsConstructor
 @NoArgsConstructor
 public class Endereco {
@@ -22,7 +24,7 @@ public class Endereco {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 
@@ -41,6 +43,12 @@ public class Endereco {
 
     @Column(name = "cidade")
     private String cidade;
+
+    public Boolean isUniqueEndereco(Endereco other) {
+        return !(other.getCep().equals(this.cep)
+                && other.getNumero() == this.numero
+                && other.getLogradouro().equals(this.logradouro));
+    }
 
     @Override
     public boolean equals(Object o) {

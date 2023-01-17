@@ -37,13 +37,13 @@ public class PessoaController {
                 .orElse(new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/get/{id}/")
     @ResponseStatus(HttpStatus.OK)
     public Pessoa getPessoa(@PathVariable("id") Long id) {
         return pessoaService.findPessoa(id);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/getAll/")
     @ResponseStatus(HttpStatus.OK)
     public List<Pessoa> getAllPessoas() {
         return pessoaService.getAllPessoas();

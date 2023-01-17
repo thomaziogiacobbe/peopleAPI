@@ -28,11 +28,7 @@ public class PessoaService {
         });
     }
 
-    public Pessoa findPessoa(Long id) {
-        return pessoaRepository.findById(id).orElse(null);
-    }
+    Pessoa findPessoa(Long id);
 
-    public List<Pessoa> getAllPessoas() {
-        return pessoaRepository.findAll();
-    }
+    List<Pessoa> getAllPessoas();
 }

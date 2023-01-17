@@ -12,5 +12,7 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 
     List<Endereco> findAllByPessoa_NomeContainsIgnoreCase(String nome);
 
+    List<Endereco> findAllByPessoa(Pessoa pessoa);
+
     List<Endereco> findAllByPessoa_Id(Long id);
 }

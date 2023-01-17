@@ -32,9 +32,7 @@ public class EnderecoService {
                 .orElseThrow(PessoaNotFoundException::new);
     }
 
-    public List<Endereco> findAllByPessoaId(Long idPessoa) {
-        return enderecoRepository.findAllByPessoa_Id(idPessoa);
-    }
+    List<Endereco> findAllByPessoaId(Long idPessoa);
 
     public List<Endereco> findAllByPessoaNome(String nome) {
         return enderecoRepository.findAllByPessoa_NomeContainsIgnoreCase(nome);

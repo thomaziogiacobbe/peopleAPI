@@ -8,22 +8,25 @@ import br.com.peopleapi.model.Pessoa;
 public class EnderecoMapper {
     private EnderecoMapper(){}
 
-    public static Endereco toEntity(EnderecoDTO endereco) {
-        return Endereco
+    public static Endereco toEntity(EnderecoDTO enderecoDTO) {
+        return enderecoDTO == null ? null :
+                Endereco
                 .builder()
-                .id(endereco.id())
-                .cep(endereco.cep())
-                .cidade(endereco.cidade())
-                .logradouro(endereco.logradouro())
-                .isPrincipal(endereco.isPrincipal())
-                .pessoa(endereco.pessoa() != null ?
-                        Pessoa.builder().id(endereco.pessoa().id()).build()
+                .id(enderecoDTO.id())
+                .cep(enderecoDTO.cep())
+                .cidade(enderecoDTO.cidade())
+                .numero(enderecoDTO.numero())
+                .logradouro(enderecoDTO.logradouro())
+                .isPrincipal(enderecoDTO.isPrincipal())
+                .pessoa(enderecoDTO.pessoa() != null ?
+                        Pessoa.builder().id(enderecoDTO.pessoa().id()).build()
                         : null)
                 .build();
     }
 
     public static EnderecoDTO toDTO(Endereco endereco) {
-        return EnderecoDTO
+        return endereco == null ? null :
+                EnderecoDTO
                 .builder()
                 .id(endereco.getId())
                 .cep(endereco.getCep())
