@@ -1,8 +1,7 @@
 package br.com.peopleapi.service;
 
 import br.com.peopleapi.model.Pessoa;
-import br.com.peopleapi.repository.PessoaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.peopleapi.model.repository.PessoaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
